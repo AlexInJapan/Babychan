@@ -1,1 +1,3 @@
 DEBUG=True
+USERNAME="suzuki"
+PASSWORD="aaa"
