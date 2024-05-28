@@ -1,10 +1,8 @@
 from flask import request,redirect,url_for,render_template,flash,session
-from  flask_blog import app
+from  salary import app
 
 @app.route('/')
 def show_entries():
-    if not session.get('logged_in'):
-        return redirect('/login')
     return render_template('entries/index.html')
 
 @app.route('/login',methods=['GET','POST'])
@@ -20,6 +18,10 @@ def login():
             return redirect('/')
     return render_template('login.html')
     
+@app.route('/input')
+def input():
+    return render_template('input.html')
+
 @app.route('/logout')
 def logout():
     session.pop('logged_in',None)
