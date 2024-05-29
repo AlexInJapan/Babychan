@@ -19,41 +19,50 @@ def calc_salary(input_salary):
     tax = "{:,}".format(tax)
     return salary, payment, tax
 
-@app.route("/")
-def top():
-    return render_template("input.html")
+
+@app.route("/", methods=["GET", "POST"])
+def input():
+    # sessionから前回の入力情報があれば取得する
+    input_data = session.get("input_data", None)
+
+    # input.htmlにテンプレートおよび前回の入力情報を返す
+    return render_template("input.html", input = input_data)
+
 
 @app.route("/output" , methods=["GET", "POST"])
-def show_result():
+def output():
     error = None
+
+    # input.htmlで入力した値をsessionに保存する
+    session["input_data"] = request.form["salary"]
+
+    # リクエストがPOSTのとき、給与計算をする
     if request.method == "POST":
-        input_salary = request.form["salary"]
-        if input_salary == "":
+
+        # 入力が空の場合は受け付けない      
+        if session["input_data"] == "":
             flash("給与が未入力です。入力してください。")
             return redirect("/")
-        input_salary = int(input_salary)
 
+        # 入力値を文字列型から整数型に変換する
+        input_salary = int(session["input_data"])
+
+        # 10000000000以上の入力は受け付けない
         if input_salary >= 10000000000:
             flash("給与には最大9,999,999,999まで入力可能です")
             return redirect("/")
+        
+        # 負の値も受け付けない
         if input_salary < 0:
             flash("給与にはマイナスの値は入力できません。")
             return redirect("/")
+
+        # calc_salary関数で給与計算をする
         salary, payment, tax = calc_salary(input_salary)
+
+    # output.htmlにテンプレートおよび計算結果を返す
     return render_template(
         "output.html",
         salary=salary,
         payment=payment, 
         tax=tax)
-
-"""
-@app.route("/", methods=["GET", "POST"])
-def input():
-    input_data = session.get("input_data", None)
-    return render_template("input.html", input = input_data)
-
-def output():
-    session["input_data"] = ""
-    # バリデーション処理
-
-"""
