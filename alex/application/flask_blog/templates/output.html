@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body%}
+
+
+    <div class="form-group">
+        <label for="salary">給与</label>
+        {{salary_detail[0]}}円の場合、
+        <label for="taxed_salary">支給額</label>
+        {{salary_detail[1]}}円、
+        <label for="tax">税金</label>
+        {{salary_detail[2]}}円です。
+    </div>
+        <button type="button" class="btn btn-primary" onclick="location.href='/input'">Go back</button>
+
+
+{% endblock %}
