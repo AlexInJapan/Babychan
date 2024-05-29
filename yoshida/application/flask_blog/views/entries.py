@@ -1,4 +1,4 @@
-from flask import request, ridirect, url_for, render_template, flash, session
+from flask import request, redirect, url_for, render_template, flash, session
 from flask_blog import app
 
 @app.route("/")
