@@ -2,6 +2,8 @@
 <title>Flask Blog</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
+<link rel=stylesheet href="{{ url_for('static', filename='style.css')}}">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -23,7 +25,10 @@
                     </li>
                     {% else %}
                     <li class = "nav-item">
-                        <a class = "nav-link" href="{{url_for('log_out')}}">ログアウト</a>
+                        <a class = "nav-link" href="{{url_for('new_entry')}}">新規投稿</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a class = "nav-link" href="{{url_for('logout')}}">ログアウト</a>
                     </li>
                     {% endif %}
                 </ul>
