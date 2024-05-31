@@ -1,0 +1,28 @@
+*{
+padding:0;
+width: 100;
+}
+
+.submit_buttom{
+    padding: 5px 10px 5px 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+   
+}
+
+.submit_area{
+    margin-top: 0.5%;
+}
+
+.blue{
+    background-color: rgb(28, 81, 253);
+}
+
+.red{
+    background-color: rgb(226, 41, 41);
+}
+
+.gray{
+    background-color: rgb(89, 89, 89);
+}
