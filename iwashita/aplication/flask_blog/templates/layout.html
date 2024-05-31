@@ -40,6 +40,20 @@
 
     
     <div class="blog-body">
-        {% block body %} {% endblock %}
+        {% block body %} 
+        {% endblock %}
     </div>
+
+    <form action="{{url_for('delete_entries')}}"method="post">
+        <button type="submit" class="btn btn-danger" style="margin-left:5px">全て削除</button>
+    </form> 
+    
+    <form action="{{url_for('information')}}"method="GET">
+        <button type="submit" class="btn btn-danger" style="margin-left:5px">運営者情報</button>
+    </form> 
+
+    <form action="{{url_for('inquiry')}}"method="GET">
+        <button type="submit" class="btn btn-danger" style="margin-left:5px">お問い合わせ</button>
+    </form> 
+
 </div>

@@ -7,6 +7,7 @@ class Entry(db.Model):
     title = db.Column(db.String(50),unique=True)
     text = db.Column(db.Text)
     created_at = db.Column(db.DateTime)
+    
 
     def __init__(self,title=None,text=None):
         self.title=title
@@ -15,3 +16,11 @@ class Entry(db.Model):
     
     def __repr__(self):
         return'<Entry id:{} title:{} text:{}>'.format(self.id,self.title,self.text)
+    
+    def display_title(self):
+        return "title:"+self.title
+    
+    def created_date(self):
+        return self.created_at.strftime("%Y/%m/%d")
+
+    
