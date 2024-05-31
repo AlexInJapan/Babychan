@@ -34,10 +34,14 @@ def update_holiday():
 
     # 祝日テーブルに入力した日付がない場合
     if holiday is None:
-        new_holiday = holi_dict
-        db.session.add(new_holiday)
-        db.session.commit()
-        msg_id = "IO1"
+        if request.form["button"] == "insert_update":
+            new_holiday = holi_dict
+            db.session.add(new_holiday)
+            db.session.commit()
+            msg_id = "IO1"
+        elif request.form["button"] == "delete":
+            flash(f"{holiday_date}は、祝日マスタに登録されていません")
+            return redirect('/')
 
     # 祝日テーブルに入力した日付がある場合
     elif holiday.holi_date == holiday_date:
