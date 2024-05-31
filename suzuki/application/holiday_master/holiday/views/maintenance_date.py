@@ -16,28 +16,30 @@ def update_holiday():
     holiday_date = request.form['holiday']
     holiday_date = datetime.strptime(holiday_date, "%Y-%m-%d").date()
     holiday_text = request.form['holiday_text']
-    msg_id = ""    
+    msg_id = ""
     # 入力した祝日が、テーブルに存在するか確認
     holiday = Holiday.query.get(holiday_date)
+    holi_dict = Holiday(
+                holi_date=holiday_date,
+                holi_text=holiday_text
+    )
     if holiday is None:
-        new_holiday = Holiday(
-            holi_date=holiday_date,
-            holi_text=holiday_text
-        )
+        new_holiday = holi_dict
         db.session.add(new_holiday)
         db.session.commit()
         msg_id = "IO1"
     elif holiday.holi_date == holiday_date:
-        update_holiday = Holiday(
-            holi_date=holiday_date,
-            holi_text=holiday_text
-        )
-        db.session.merge(update_holiday)
-        db.session.commit()
-        msg_id = "IO2"
+        if request.form["button"] == "insert_update":
+            update_holiday = holi_dict
+            db.session.merge(update_holiday)
+            db.session.commit()
+            msg_id = "IO2"
+        elif request.form["button"] == "delete":
+            db.session.delete(holiday)
+            db.session.commit()
+            msg_id = "IO3"
     else:
-        flash('エラーが起きました。もう一度やり直してください')
-        return redirect('/')
+        msg_id = "IO4"
     return render_template(
             "result.html",
             holiday_date=holiday_date,
