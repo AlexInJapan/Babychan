@@ -23,37 +23,6 @@ def calc_salary(input_salary):
 def top():
     return render_template("input.html")
 
-@app.route("/output" , methods=["GET", "POST"])
-def show_result():
-    error = None
-    if request.method == "POST":
-        input_salary = request.form["salary"]
-        if input_salary == "":
-            flash("給与が未入力です。入力してください。")
-            return redirect("/")
-        input_salary = int(input_salary)
-
-        if input_salary >= 10000000000:
-            flash("給与には最大9,999,999,999まで入力可能です")
-            return redirect("/")
-        if input_salary < 0:
-            flash("給与にはマイナスの値は入力できません。")
-            return redirect("/")
-        salary, payment, tax = calc_salary(input_salary)
-    return render_template(
-        "output.html",
-        salary=salary,
-        payment=payment, 
-        tax=tax)
-
-"""
-@app.route("/", methods=["GET", "POST"])
-def input():
-    input_data = session.get("input_data", None)
-    return render_template("input.html", input = input_data)
-
-def output():
-    session["input_data"] = ""
-    # バリデーション処理
-
-"""
+#給与が未入力の場合を定義
+@app.route("/")
+def not_entered()
