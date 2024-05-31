@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>お問い合わせフォーム</title>
+</head>
+<body>
+
+<h2>お問い合わせ</h2>
+
+<form action="メールを送信するスクリプトのURL" method="post">
+  <label for="name">お名前：</label>
+  <input type="text" id="name" name="user_name" required>
+
+  <label for="mail">メールアドレス：</label>
+  <input type="email" id="mail" name="user_email" required>
+
+  <label for="msg">メッセージ：</label>
+  <textarea id="msg" name="user_message" required></textarea>
+
+  <input type="submit" value="送信">
+</form>
+
+</body>
+</html>
