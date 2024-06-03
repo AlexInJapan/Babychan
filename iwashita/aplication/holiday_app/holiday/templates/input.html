@@ -1,0 +1,43 @@
+{% extends "layout.html"%}
+{% block body %}
+<form action="{{ url_for('update_holiday')}}" method="post">
+    <div class="form-group">
+        <label for="InputHoliday">祝日 日付</label>
+        <input 
+            type="date"
+            class="form-control"
+            id="InputHoliday"
+            name="holiday">
+    </div>
+    <div class="form-group">
+        <label for="InputHolidayText">祝日 テキスト</label>
+        <input 
+            type="text"
+            class="form-control"
+            id="InputHolidayText"
+            name="holiday_text">
+    </div>
+    <button
+        type="submit" 
+        class="btn btn-primary"
+        name="button"
+        value="insert_update">
+        新規登録・更新
+    </button>
+    <button
+        type="submit" 
+        class="btn btn-danger"
+        name="button"
+        value="delete">
+        削除
+    </button>
+    <br><br>
+</form>
+<form action="{{ url_for('show_holidays')}}" method="post">
+    <button
+        type="submit"
+        class="btn btn-secondary">
+        一覧出力
+    </button>
+</form>
+{% endblock %}

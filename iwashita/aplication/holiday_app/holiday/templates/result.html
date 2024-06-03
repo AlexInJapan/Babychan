@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if msg_id == "IO1"%}
+    <p>{{holiday_date}}（{{holiday_text}}）が登録されました</p>
+{% elif msg_id == "IO2"%}
+    <p>{{holiday_date}}は「{{holiday_text}}」に更新されました</p>
+{% elif msg_id == "IO3"%}
+    <p>{{holiday_date}}（{{holiday_text}}）が削除されました</p>
+{% elif msg_id == "IO4" %}
+    <p>祝日マスタが登録されていません</p>
+{% else %}
+    <p></p>
+{% endif %}
+<button type="button" class="btn btn-primary" onclick="location.href='/'">戻る</button>    
+{% endblock %}
