@@ -22,6 +22,8 @@ def input_entry():
         return redirect(url_for("login"))
     return render_template("entries/input.html")
 
+
+
 #ブログ新規投稿へ遷移
 @app.route("/entries/new",methods=["GET"])
 def new_entry():
