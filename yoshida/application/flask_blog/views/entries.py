@@ -22,23 +22,31 @@ def input_entry():
         return redirect(url_for("login"))
     return render_template("entries/input.html")
 
-#給与計算
-@app.route("/entries",methods=["POST"]) 
-def input_salary_calc():
-    if not session.get("logged_in"):
-        return redirect(url_for("login"))
-    entry = Entry(
-        number=request.form["salary"]
-        )
 
 
-
+#ブログ新規投稿へ遷移
 @app.route("/entries/new",methods=["GET"])
-@login_required
 def new_entry():
     if not session.get("logged_in"):
         return redirect(url_for("login"))
     return render_template("entries/new.html")
+
+
+#計算するボタンを押した際、salaryのデータを送る
+@app.route("/entries/input",methods=["POST","GET"])
+def output_entry():
+    salary = request.form["salary"]
+    salary=int(salary)
+    result = 0
+    if salary > 1000000:
+        result += (salary-1000000)*0.2 + 1000000*0.1
+    else:
+        result += salary*0.1
+    return render_template('entries/output.html', 
+                           salary = "{:,}".format(round(salary)), 
+                           paid = "{:,}".format(round(salary-result)),
+                           tax = "{:,}".format(round(result)))
+
 
 #新しいブログ投稿ボタンを押した際の挙動
 @app.route("/entries",methods=["POST"]) 

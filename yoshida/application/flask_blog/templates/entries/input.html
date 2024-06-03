@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {%block body%}
 <!-- ここから下が共通部分の下に入れられる部分、<body> -->
-  <form action="{{url_for('input_salary_calc') }}"method=post class="input_salary_calc">
+  <form action="{{url_for('output_entry') }}"method=post class="output_entry">
     <div class="form-group">
         <label for="InputTitle">給与を入力</label>
         <input type="number" class="form-control" id="InputTitle" name="salary">
