@@ -32,6 +32,9 @@
         value="add">
         追加
     </button>
+</form>
+<br>
+<form action="{{url_for('show_todo')}}" method="post">
     <button
         type="submit"
         class="btn btn-secondary"
@@ -39,4 +42,5 @@
         value="show">
         一覧出力
     </button>
+</form>
 {% endblock %}

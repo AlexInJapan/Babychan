@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+<table class="table">
+    <tr class="table-primary">
+        <th>やること</th>
+        <th>期日</th>
+        <th>備考</th>
+    </tr>
+    {% for todo in todo_list %}
+    <tr>
+        <td>{{todo.todo_name}}</td>
+        <td>{{todo.todo_date}}</td>
+        <td>{{todo.todo_text}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="location.href='/'">
+    戻る
+</button>
+{% endblock%}
