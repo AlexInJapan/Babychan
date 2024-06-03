@@ -43,8 +43,11 @@
     todoCheckbox.forEach((checkbox) => {
         checkbox.addEventListener("change", function(){
             const checkedTodos = Array.from(todoCheckbox).filter((cb) => cb.checked);
-            if (checkedTodos.length > 0) {
+            if (checkedTodos.length === 1) {
                 editButton.disabled = false;
+                deleteButton.disabled = false;
+            } else if (checkedTodos.length > 1){
+                editButton.disabled = true;
                 deleteButton.disabled = false;
             } else {
                 editButton.disabled = true;
