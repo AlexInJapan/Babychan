@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="/" method="post">
+<form action="{{url_for('update_todo')}}" method="post">
     <div class="form-group">
         <label for="InputTodoName">やること</label>
         <input 
@@ -29,24 +29,14 @@
         type="submit" 
         class="btn btn-primary"
         name="button"
-        value="insert_update">
-        新規登録・更新
+        value="add">
+        追加
     </button>
-    <button
-        type="submit" 
-        class="btn btn-danger"
-        name="button"
-        value="delete">
-        削除
-    </button>
-    <br><br>
-    </form>
-    <form action="/" method="post">
     <button
         type="submit"
-        class="btn btn-secondary">
+        class="btn btn-secondary"
+        name="button"
+        value="show">
         一覧出力
     </button>
-
-</form>
 {% endblock %}
