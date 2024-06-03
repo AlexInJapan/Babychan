@@ -28,9 +28,3 @@ def logout():
     session.pop("logged_in" , None)
     flash("ログアウトしました")
     return redirect("/")
-
-@app.route("/input",methods=["POST"])
-def calc_input_salary():
-    if salary >200:
-        flash("駄目です")
-
