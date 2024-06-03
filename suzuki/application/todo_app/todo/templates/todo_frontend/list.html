@@ -1,19 +1,59 @@
 {% extends "layout.html" %}
 {% block body %}
-<table class="table">
-    <tr class="table-primary">
-        <th>やること</th>
-        <th>期日</th>
-        <th>備考</th>
-    </tr>
-    {% for todo in todo_list %}
-    <tr>
-        <td>{{todo.todo_name}}</td>
-        <td>{{todo.todo_date}}</td>
-        <td>{{todo.todo_text}}</td>
-    </tr>
-    {% endfor %}
-</table>
+<form action="/edit" method="post">
+    <table class="table">
+        <tr class="table-primary">
+            <th></th>
+            <th>やること</th>
+            <th>期日</th>
+            <th>備考</th>
+        </tr>
+        {% for todo in todo_list %}
+        <tr>
+            <td><input type="checkbox" name="edit_todo" id="{{todo.id}}"></td>
+            <td>{{todo.todo_name}}</td>
+            <td>{{todo.todo_date}}</td>
+            <td>{{todo.todo_text}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button
+        type="submit"
+        id="edit"
+        class="btn btn-secondary"
+        name="button"
+        value="update_todo"
+        disabled>
+        編集する
+    </button>
+    <button
+        type="submit"
+        id="delete"
+        class="btn btn-danger"
+        name="button"
+        value="delete_todo"
+        disabled>
+        削除する
+    </button>
+</form>
+<script>
+    const todoCheckbox = document.querySelectorAll("input[type='checkbox']")
+    const editButton = document.getElementById("edit")
+    const deleteButton = document.getElementById("delete")
+    todoCheckbox.forEach((checkbox) => {
+        checkbox.addEventListener("change", function(){
+            const checkedTodos = Array.from(todoCheckbox).filter((cb) => cb.checked);
+            if (checkedTodos.length > 0) {
+                editButton.disabled = false;
+                deleteButton.disabled = false;
+            } else {
+                editButton.disabled = true;
+                deleteButton.disabled = true;
+            }
+        })
+    })
+</script>
+<br>
 <button
     type="button"
     class="btn btn-primary"
