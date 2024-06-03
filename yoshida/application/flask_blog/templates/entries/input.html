@@ -1,0 +1,13 @@
+<!-- 共通部分を表示 -->
+{% extends "layout.html" %}
+{%block body%}
+<!-- ここから下が共通部分の下に入れられる部分、<body> -->
+  <form action="{{url_for('input_salary_calc') }}"method=post class="input_salary_calc">
+    <div class="form-group">
+        <label for="InputTitle">給与を入力</label>
+        <input type="number" class="form-control" id="InputTitle" name="salary">
+    </div>
+
+        <button type ="submit" class="btn btn-primary">計算する</button>
+</form>
+{%endblock%}

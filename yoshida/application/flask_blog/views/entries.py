@@ -14,6 +14,24 @@ def show_entries():
     return render_template("entries/index.html",entries=entries)   
 
 
+#ナビゲーションバーの給与計算を押すとcalc.htmlに遷移
+@app.route("/entries/input",methods=["GET"])
+@login_required
+def input_entry():
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+    return render_template("entries/input.html")
+
+#給与計算
+@app.route("/entries",methods=["POST"]) 
+def input_salary_calc():
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+    entry = Entry(
+        number=request.form["salary"]
+        )
+
+
 
 @app.route("/entries/new",methods=["GET"])
 @login_required
@@ -22,6 +40,7 @@ def new_entry():
         return redirect(url_for("login"))
     return render_template("entries/new.html")
 
+#新しいブログ投稿ボタンを押した際の挙動
 @app.route("/entries",methods=["POST"]) 
 def add_entry():
     if not session.get("logged_in"):
