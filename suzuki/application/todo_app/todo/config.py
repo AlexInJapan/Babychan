@@ -1,9 +1,10 @@
+import os
+
 DEBUG = True
 SECRET_KEY = "todo-list@suzuki.sota.ok"
-USERNAME = "suzuki_sota"
-PASSWORD = "suzuki.sota.ok"
+USERNAME = os.environ.get('USERNAME')
+PASSWORD = os.environ.get('PASSWORD')
 
-import os
 SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8".format(
     **{
         "user": os.getenv("DB_USER", "root"),
