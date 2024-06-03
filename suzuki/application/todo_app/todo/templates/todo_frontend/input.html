@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="/" method="post">
+    <div class="form-group">
+        <label for="InputTodoName">やること</label>
+        <input 
+            type="text"
+            name="todo_name"
+            id="InputTodoName"
+            class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="InputTodoDate">期日</label>
+        <input 
+            type="date"
+            name="todo_date"
+            id="InputTodoDate"
+            class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="InputTodoText">備考</label>
+        <input 
+            type="text"
+            name="todo_text"
+            id="InputTodoText"
+            class="form-control">
+    </div>
+    <button
+        type="submit" 
+        class="btn btn-primary"
+        name="button"
+        value="insert_update">
+        新規登録・更新
+    </button>
+    <button
+        type="submit" 
+        class="btn btn-danger"
+        name="button"
+        value="delete">
+        削除
+    </button>
+    <br><br>
+    </form>
+    <form action="/" method="post">
+    <button
+        type="submit"
+        class="btn btn-secondary">
+        一覧出力
+    </button>
+
+</form>
+{% endblock %}
